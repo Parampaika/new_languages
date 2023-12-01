@@ -1,6 +1,8 @@
 local file = io.open("data.txt", "r")
+local resultFile = io.open("result.txt", "a")
 
-if file then
+
+if file and resultFile then
     local content = file:read("*all") 
 
     -- Заменим всю пунктуацию на пробелы
@@ -25,7 +27,11 @@ if file then
 
     print("Количество повторений слова \"" .. searchWord .. "\": " .. count)
 
+    -- Запись в файл
+    resultFile:write("Количество повторений слова \"" .. searchWord .. "\": " .. count .. "\n")
+  
     file:close()
+    resultFile:close()
 else
     print("Не удалось открыть файл")
 end
